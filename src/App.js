@@ -1,24 +1,25 @@
 import logo from './logo.svg';
+import './assets/bootstrap/css/bootstrap.min.css';
 import './App.css';
+import Dashboard from './Dashboard';
+import { useState } from 'react';
+import Login from './Login';
+import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
+import Logout from './Logout';
 
 function App() {
+  const [user, setUser] = useState(false)
+  const [userData, setUserData] = useState([])
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {user ?(
+        <Dashboard userData={userData} setUser={setUser}/>
+      ):(
+        <Login setUser={setUser}  setUserData={setUserData}/>
+      )
+      }
+    </>
   );
 }
 
